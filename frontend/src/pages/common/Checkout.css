@@ -1,0 +1,191 @@
+.checkout-page {
+  max-width: 1300px;
+  margin: 40px auto;
+  padding: 20px;
+
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 30px;
+}
+
+.checkout-left,
+.checkout-right {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+}
+
+.checkout-title {
+  font-size: 2.3rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 25px;
+}
+
+.checkout-section {
+  margin-bottom: 35px;
+}
+
+.checkout-section h2 {
+  font-size: 1.25rem;
+  margin-bottom: 18px;
+  color: #15803d;
+}
+
+.address-card {
+  display: block;
+  border: 2px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 18px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  transition: 0.25s ease;
+  background: #fff;
+}
+
+.address-card:hover {
+  border-color: #22c55e;
+  transform: translateY(-2px);
+}
+
+.address-card.active {
+  border-color: #22c55e;
+  background: #f0fdf4;
+}
+
+.address-card input {
+  margin-right: 10px;
+}
+
+.address-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 6px;
+}
+
+.address-info {
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+.add-address-btn {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  background: #16a34a;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.add-address-btn:hover {
+  background: #15803d;
+}
+
+.payment-box {
+  border: 2px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 18px;
+  background: #fafafa;
+}
+
+.payment-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+}
+
+.checkout-right h2 {
+  color: #15803d;
+  margin-bottom: 22px;
+}
+
+.summary-row,
+.summary-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.summary-row {
+  padding: 14px 0;
+  border-bottom: 1px solid #f1f5f9;
+  color: #6b7280;
+}
+
+.summary-row strong {
+  color: #111827;
+}
+
+.summary-total {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 2px solid #e5e7eb;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.place-order-btn {
+  width: 100%;
+  margin-top: 25px;
+  padding: 15px;
+  border: none;
+  border-radius: 12px;
+
+  background: linear-gradient(
+    135deg,
+    #16a34a,
+    #22c55e
+  );
+
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.place-order-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(34, 197, 94, 0.35);
+}
+
+.place-order-btn:active {
+  transform: scale(0.98);
+}
+
+.checkout-loading,
+.checkout-login {
+  max-width: 700px;
+  margin: 80px auto;
+  text-align: center;
+}
+
+.checkout-login a {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 12px 24px;
+  border-radius: 10px;
+  background: #16a34a;
+  color: white;
+  text-decoration: none;
+}
+
+.checkout-login a:hover {
+  background: #15803d;
+}
+
+@media (max-width: 900px) {
+  .checkout-page {
+    grid-template-columns: 1fr;
+  }
+
+  .checkout-right {
+    order: -1;
+  }
+}

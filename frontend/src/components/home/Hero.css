@@ -1,0 +1,128 @@
+.hero {
+  min-height: 100vh;
+
+  background: linear-gradient(
+    135deg,
+    #081225,
+    #0f172a,
+    #16213e
+  );
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 60px;
+
+  padding: 40px;
+
+  color: white;
+
+  overflow: hidden;
+}
+
+.hero-left,
+.hero-right {
+  flex: 1;
+}
+
+.hero-racket {
+  width: 100%;
+  max-width: 500px;
+
+  display: block;
+  margin: auto;
+
+  filter: drop-shadow(
+    0 25px 35px
+      rgba(56, 189, 248, 0.25)
+  );
+}
+
+.hero-right h1 {
+  font-size: 5rem;
+  line-height: 0.95;
+
+  margin-bottom: 20px;
+
+  letter-spacing: 2px;
+  font-weight: 900;
+}
+
+.hero-right p {
+  font-size: 1.2rem;
+  color: #cbd5e1;
+
+  margin-bottom: 30px;
+
+  max-width: 500px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.hero-buttons button {
+  border: none;
+
+  padding: 14px 28px;
+
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  font-weight: bold;
+
+  background: #38bdf8;
+
+  color: #081225;
+
+  transition: all 0.3s ease;
+}
+
+.hero-buttons button:hover {
+  transform: translateY(-3px);
+
+  box-shadow: 0 10px 25px
+    rgba(56, 189, 248, 0.35);
+}
+
+.secondary-btn {
+  background: transparent !important;
+
+  border: 1px solid white !important;
+
+  color: white !important;
+}
+
+.secondary-btn:hover {
+  background: rgba(
+    255,
+    255,
+    255,
+    0.08
+  ) !important;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+
+    padding-top: 120px;
+  }
+
+  .hero-right h1 {
+    font-size: 3rem;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
+  .hero-racket {
+    max-width: 320px;
+  }
+}

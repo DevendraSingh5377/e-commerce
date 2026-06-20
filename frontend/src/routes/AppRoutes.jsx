@@ -28,8 +28,13 @@ import OrderDetails from "../pages/user/OrderDetails";
 import AdminRoute from "../components/admin/AdminRoute";
 import Dashboard from "../pages/admin/Dashboard";
 import Orders from "../pages/admin/Orders";
-import ProductsAdmin from "../pages/admin/Products";
 
+import AdminProducts from "../pages/admin/AdminProducts";
+import AddProduct from "../pages/admin/AddProduct";
+import EditProduct from "../pages/admin/EditProduct";
+import Coupons from "../pages/admin/Coupons";
+import Users from "../pages/admin/Users";
+import AddAddress from "../pages/user/AddAddress";
 // Wrapped pages with common layout
 const ProductsPage = () => (
   <MainLayout>
@@ -189,13 +194,66 @@ const AppRoutes = () => {
   element={
     <AdminRoute>
       <MainLayout>
-        <ProductsAdmin />
+        <AdminProducts />
       </MainLayout>
     </AdminRoute>
   }
 />
 
+<Route
+  path="/admin/add-product"
+  element={
+    <AdminRoute>
+      <MainLayout>
+        <AddProduct />
+      </MainLayout>
+    </AdminRoute>
+  }
+/>
 
+<Route
+  path="/admin/products/edit/:id"
+  element={
+    <AdminRoute>
+      <MainLayout>
+        <EditProduct />
+      </MainLayout>
+    </AdminRoute>
+  }
+/>
+
+<Route
+  path="/admin/coupons"
+  element={
+    <AdminRoute>
+      <MainLayout>
+        <Coupons />
+      </MainLayout>
+    </AdminRoute>
+  }
+/>
+
+<Route
+  path="/admin/users"
+  element={
+    <AdminRoute>
+      <MainLayout>
+        <Users />
+      </MainLayout>
+    </AdminRoute>
+  }
+/>
+
+<Route
+  path="/add-address"
+  element={
+    <ProtectedRoute>
+      <MainLayout>
+        <AddAddress />
+      </MainLayout>
+    </ProtectedRoute>
+  }
+/>
       </Routes>
     </BrowserRouter>
   );

@@ -1,75 +1,84 @@
-const razorpay = require(
-  "../config/razorpay"
-);
 
-const Order = require(
-  "../models/Order"
-);
 const crypto = require("crypto");
 // POST /api/payment/create-order
+const razorpay =
+  require("../config/razorpay");
+
+const Order =
+  require("../models/Order");
+
 const createRazorpayOrder =
   async (req, res) => {
+
     try {
-      const { orderId } = req.body;
 
-      // Check if orderId is provided
-      if (!orderId) {
-        return res.status(400).json({
-          success: false,
-          message: "Order ID is required",
-        });
-      }
+      console.log(
+        "BODY:",
+        req.body
+      );
 
-      // Find the order
+      const { orderId } =
+        req.body;
+
+      console.log(
+        "ORDER ID:",
+        orderId
+      );
+
       const dbOrder =
-        await Order.findById(orderId);
+        await Order.findById(
+          orderId
+        );
 
-      if (!dbOrder) {
-        return res.status(404).json({
-          success: false,
-          message: "Order not found",
-        });
-      }
+      console.log(
+        "DB ORDER:",
+        dbOrder
+      );
 
-      // Prevent duplicate Razorpay order creation
-      if (dbOrder.razorpayOrderId) {
-        return res.status(400).json({
-          success: false,
-          message:
-            "Razorpay order already created",
-        });
-      }
-
-      // Create Razorpay order
       const options = {
         amount:
-          dbOrder.finalAmount * 100, // amount in paise
+          dbOrder.finalAmount *
+          100,
         currency: "INR",
         receipt:
-          "receipt_" + dbOrder._id,
+          "receipt_" +
+          dbOrder._id,
       };
+
+      console.log(
+        "OPTIONS:",
+        options
+      );
 
       const razorpayOrder =
         await razorpay.orders.create(
           options
         );
 
-      // Save Razorpay Order ID in MongoDB
-      dbOrder.razorpayOrderId =
-        razorpayOrder.id;
+    console.log("RAZORPAY ORDER CREATED");
+console.log(razorpayOrder);
 
-      await dbOrder.save();
+      console.log(
+        "RAZORPAY:",
+        razorpayOrder
+      );
 
       res.status(200).json({
         success: true,
-        message:
-          "Razorpay order created successfully",
         razorpayOrder,
       });
+
     } catch (error) {
+
+      console.log(
+        "PAYMENT ERROR:",
+        error
+      );
+
       res.status(500).json({
         success: false,
-        message: error.message,
+        message:
+          error.message,
       });
     }
   };

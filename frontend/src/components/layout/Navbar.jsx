@@ -151,6 +151,28 @@ const Navbar = () => {
     >
       Manage Orders
     </Link>
+<Link
+  to="/admin/coupons"
+  style={{
+    textDecoration: "none",
+    color: "#16a34a",
+    fontWeight: "bold",
+  }}
+>
+  Coupons
+</Link>
+<Link
+  to="/admin/users"
+  style={{
+    textDecoration: "none",
+    color: "#16a34a",
+    fontWeight: "bold",
+  }}
+>
+  Manage Users
+</Link>
+
+
   </>
 )}
                 

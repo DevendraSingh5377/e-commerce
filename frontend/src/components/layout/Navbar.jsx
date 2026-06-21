@@ -3,78 +3,94 @@ import {
   FaShoppingCart,
   FaHeart,
   FaBox,
+  FaBars,
+  FaTimes,
 } from "react-icons/fa";
+import { useState } from "react";
 
 import { useAuth } from "../../context/AuthContext";
+import "./Navbar.css";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
   const {
-  isLoggedIn,
-  logout,
-  user,
-} = useAuth();
+    isLoggedIn,
+    logout,
+    user,
+  } = useAuth();
 
-  const navigate =
-    useNavigate();
+  const navigate = useNavigate();
 
-  const handleLogout = () => {
+  const [menuOpen, setMenuOpen] =
+    useState(false);
+
+ const handleLogout = async () => {
+  const result = await Swal.fire({
+    title: "Logout?",
+    text: "Are you sure you want to logout?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#dc2626",
+    cancelButtonColor: "#64748b",
+    confirmButtonText: "Logout",
+    cancelButtonText: "Cancel",
+    reverseButtons: true,
+  });
+
+  if (result.isConfirmed) {
     logout();
+
+    Swal.fire({
+      title: "Logged Out",
+      text: "You have been logged out successfully.",
+      icon: "success",
+      timer: 1500,
+      showConfirmButton: false,
+    });
+
     navigate("/");
+  }
+};
+
+  const closeMenu = () => {
+    setMenuOpen(false);
   };
 
   return (
-    <nav
-      style={{
-        height: "70px",
-        background:
-          "rgba(255,255,255,0.92)",
-        backdropFilter:
-          "blur(12px)",
-        borderBottom:
-          "1px solid #e5e7eb",
-
-        display: "flex",
-        alignItems: "center",
-        justifyContent:
-          "space-between",
-
-        padding: "0 30px",
-
-        position: "sticky",
-        top: 0,
-        zIndex: 1000,
-      }}
-    >
+    <nav className="navbar">
       {/* Logo */}
       <Link
         to="/"
-        style={{
-          fontSize: "24px",
-          fontWeight: "700",
-          color: "#1E3A8A",
-          textDecoration:
-            "none",
-        }}
+        className="logo"
+        onClick={closeMenu}
       >
         🏸 Badminton Store
       </Link>
 
+      {/* Mobile Menu Button */}
+      <button
+        className="menu-btn"
+        onClick={() =>
+          setMenuOpen(!menuOpen)
+        }
+      >
+        {menuOpen ? (
+          <FaTimes />
+        ) : (
+          <FaBars />
+        )}
+      </button>
+
       {/* Navigation */}
       <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: "22px",
-        }}
+        className={`nav-links ${
+          menuOpen ? "open" : ""
+        }`}
       >
         <Link
           to="/products"
-          style={{
-            textDecoration:
-              "none",
-            color: "#222",
-            fontWeight: "500",
-          }}
+          className="nav-link"
+          onClick={closeMenu}
         >
           Products
         </Link>
@@ -83,110 +99,98 @@ const Navbar = () => {
           <>
             <Link
               to="/wishlist"
-              style={{
-                color: "#222",
-              }}
+              className="nav-link"
               title="Wishlist"
+              onClick={closeMenu}
             >
               <FaHeart size={18} />
             </Link>
 
             <Link
               to="/cart"
-              style={{
-                color: "#222",
-              }}
+              className="nav-link"
               title="Cart"
+              onClick={closeMenu}
             >
-              <FaShoppingCart size={18} />
+              <FaShoppingCart
+                size={18}
+              />
             </Link>
 
             <Link
               to="/my-orders"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "6px",
-                textDecoration: "none",
-                color: "#222",
-                fontWeight: "500",
-              }}
+              className="nav-link"
+              onClick={closeMenu}
             >
-              <FaBox size={16} />
+              <FaBox
+                size={16}
+                style={{
+                  marginRight:
+                    "6px",
+                }}
+              />
               My Orders
             </Link>
 
+            {user?.role ===
+              "admin" && (
+              <>
+                <Link
+                  to="/admin"
+                  className="admin-link"
+                  onClick={
+                    closeMenu
+                  }
+                >
+                  Dashboard
+                </Link>
 
-              {user?.role === "admin" && (
-  <>
-    <Link
-      to="/admin"
-      style={{
-        textDecoration: "none",
-        color: "#16a34a",
-        fontWeight: "bold",
-      }}
-    >
-      Dashboard
-    </Link>
+                <Link
+                  to="/admin/products"
+                  className="admin-link"
+                  onClick={
+                    closeMenu
+                  }
+                >
+                  Manage Products
+                </Link>
 
-    <Link
-      to="/admin/products"
-      style={{
-        textDecoration: "none",
-        color: "#16a34a",
-        fontWeight: "bold",
-      }}
-    >
-      Manage Products
-    </Link>
+                <Link
+                  to="/admin/orders"
+                  className="admin-link"
+                  onClick={
+                    closeMenu
+                  }
+                >
+                  Manage Orders
+                </Link>
 
-    <Link
-      to="/admin/orders"
-      style={{
-        textDecoration: "none",
-        color: "#16a34a",
-        fontWeight: "bold",
-      }}
-    >
-      Manage Orders
-    </Link>
-<Link
-  to="/admin/coupons"
-  style={{
-    textDecoration: "none",
-    color: "#16a34a",
-    fontWeight: "bold",
-  }}
->
-  Coupons
-</Link>
-<Link
-  to="/admin/users"
-  style={{
-    textDecoration: "none",
-    color: "#16a34a",
-    fontWeight: "bold",
-  }}
->
-  Manage Users
-</Link>
+                <Link
+                  to="/admin/coupons"
+                  className="admin-link"
+                  onClick={
+                    closeMenu
+                  }
+                >
+                  Coupons
+                </Link>
 
+                <Link
+                  to="/admin/users"
+                  className="admin-link"
+                  onClick={
+                    closeMenu
+                  }
+                >
+                  Manage Users
+                </Link>
+              </>
+            )}
 
-  </>
-)}
-                
-               
-              
-             
             <Link
               to="/profile"
-              style={{
-                textDecoration:
-                  "none",
-                color: "#222",
-                fontWeight: "500",
-              }}
+              className="nav-link"
+              onClick={closeMenu}
             >
               Profile
             </Link>
@@ -195,22 +199,7 @@ const Navbar = () => {
               onClick={
                 handleLogout
               }
-              style={{
-                background:
-                  "#1E3A8A",
-                color:
-                  "white",
-                border:
-                  "none",
-                padding:
-                  "8px 16px",
-                borderRadius:
-                  "8px",
-                cursor:
-                  "pointer",
-                fontWeight:
-                  "600",
-              }}
+              className="logout-btn"
             >
               Logout
             </button>

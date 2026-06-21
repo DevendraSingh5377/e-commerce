@@ -1,22 +1,44 @@
-* {
+/* RESET */
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* ROOT */
 html,
 body,
 #root {
-  height: 100%;
   width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
 }
 
+/* BODY */
 body {
   background: #f8fafc;
   color: #1f2937;
   font-family: Inter, Arial, sans-serif;
+  overflow-x: hidden;
 }
 
+/* APP LAYOUT */
+.app-container,
+.layout-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content,
+.layout-content {
+  flex: 1;
+  width: 100%;
+}
+
+/* LINKS */
 a {
   text-decoration: none;
   color: inherit;
@@ -27,24 +49,47 @@ a:hover {
   color: #1E3A8A;
 }
 
+/* BUTTONS */
 button {
   cursor: pointer;
-}
-.app-container {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  font-family: inherit;
 }
 
-.main-content {
-  flex: 1;
-}
-.layout-wrapper {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+/* IMAGES */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
-.layout-content {
-  flex: 1;
+/* FORM ELEMENTS */
+input,
+select,
+textarea {
+  max-width: 100%;
+  font-family: inherit;
+}
+
+/* PREVENT OVERFLOW */
+section,
+main,
+article,
+aside,
+header,
+footer,
+nav {
+  max-width: 100%;
+}
+
+/* TABLES */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  body {
+    font-size: 15px;
+  }
 }

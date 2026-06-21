@@ -60,7 +60,7 @@ const [wishlistedProductId, setWishlistedProductId] = useState(null);
           category,
           sort,
           page: currentPage,
-          limit: 10,
+          limit: 12,
         });
 
         setProducts(data.products || []);

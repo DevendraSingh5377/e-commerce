@@ -12,28 +12,19 @@ const createRazorpayOrder =
 
     try {
 
-      console.log(
-        "BODY:",
-        req.body
-      );
+
 
       const { orderId } =
         req.body;
 
-      console.log(
-        "ORDER ID:",
-        orderId
-      );
+  
 
       const dbOrder =
         await Order.findById(
           orderId
         );
 
-      console.log(
-        "DB ORDER:",
-        dbOrder
-      );
+
 
       const options = {
         amount:
@@ -45,23 +36,13 @@ const createRazorpayOrder =
           dbOrder._id,
       };
 
-      console.log(
-        "OPTIONS:",
-        options
-      );
+  
 
       const razorpayOrder =
         await razorpay.orders.create(
           options
         );
 
-    console.log("RAZORPAY ORDER CREATED");
-console.log(razorpayOrder);
-
-      console.log(
-        "RAZORPAY:",
-        razorpayOrder
-      );
 
       res.status(200).json({
         success: true,
@@ -70,10 +51,7 @@ console.log(razorpayOrder);
 
     } catch (error) {
 
-      console.log(
-        "PAYMENT ERROR:",
-        error
-      );
+   
 
       res.status(500).json({
         success: false,

@@ -14,6 +14,7 @@ import {
   createRazorpayOrder,
   verifyPayment,
 } from "../../services/paymentService";
+import API from "../../services/axios";
 
 
 const currency = (value = 0) =>
@@ -207,6 +208,28 @@ console.log(
 
         order_id:
           razorOrder.id,
+
+   modal: {
+  ondismiss: async function () {
+
+    try {
+
+      await API.delete(
+        `/orders/${mongoOrder._id}`
+      );
+
+      toast.error(
+        "Payment Cancelled"
+      );
+
+    } catch (error) {
+
+      console.log(error);
+
+    }
+  },
+},
+
 
         handler:
           async function (

@@ -61,14 +61,14 @@ const placeOrder = async (req, res) => {
 });
 
     // Clear cart after successful order
- cart.items = [];
-cart.totalPrice = 0;
-cart.totalDiscount = 0;
-cart.coupon = null;
-cart.couponDiscount = 0;
-cart.finalAmount = 0;
+//  cart.items = [];
+// cart.totalPrice = 0;
+// cart.totalDiscount = 0;
+// cart.coupon = null;
+// cart.couponDiscount = 0;
+// cart.finalAmount = 0;
 
-await cart.save();
+// await cart.save();
 
     res.status(201).json({
       success: true,
@@ -207,10 +207,53 @@ const updateOrderStatus = async (req, res) => {
   }
 };
 
+const deleteOrder =
+async (req, res) => {
+
+  try {
+
+    const order =
+      await Order.findOne({
+        _id: req.params.id,
+        user: req.user._id,
+      });
+
+    if (!order) {
+      return res.status(404).json({
+        success: false,
+        message:
+          "Order not found",
+      });
+    }
+
+    await Order.findByIdAndDelete(
+      req.params.id
+    );
+
+    res.status(200).json({
+      success: true,
+      message:
+        "Order deleted",
+    });
+
+  } catch (error) {
+
+    res.status(500).json({
+      success: false,
+      message:
+        error.message,
+    });
+
+  }
+};
+
+
+
 module.exports = {
   placeOrder,
   getMyOrders,
   getOrderById,
   getAllOrders,
   updateOrderStatus,
+   deleteOrder,
 };

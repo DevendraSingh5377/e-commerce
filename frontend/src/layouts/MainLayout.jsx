@@ -12,19 +12,21 @@ const MainLayout = ({
   const isHomePage =
     location.pathname === "/";
 
-  return (
-    <>
-      <Navbar />
+return (
+  <div className="layout-wrapper">
+    <Navbar />
 
+    <div className="layout-content">
       <PageContainer
         fluid={isHomePage}
       >
         {children}
       </PageContainer>
+    </div>
 
-      <Footer />
-    </>
-  );
+    <Footer />
+  </div>
+);
 };
 
 export default MainLayout;

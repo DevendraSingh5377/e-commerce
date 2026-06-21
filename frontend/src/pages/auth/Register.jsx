@@ -3,7 +3,7 @@ import {
   useNavigate,
   Link,
 } from "react-router-dom";
-
+import "./Auth.css";
 import { registerUser } from "../../services/authService";
 import { useAuth } from "../../context/AuthContext";
 
@@ -68,164 +68,83 @@ const Register = () => {
   };
 
   return (
-    <div
-      style={{
-        maxWidth: "400px",
-        margin: "50px auto",
-        padding: "30px",
-        border:
-          "1px solid #ddd",
-        borderRadius: "10px",
-      }}
-    >
-      <h2
-        style={{
-          textAlign: "center",
-        }}
-      >
-        Register
+  <div className="auth-page">
+    <div className="auth-card">
+
+      <h2 className="auth-title">
+        Create Account
       </h2>
 
+      <p className="auth-subtitle">
+        Join the Badminton Store
+      </p>
+
       {error && (
-        <p
-          style={{
-            color: "red",
-            textAlign:
-              "center",
-          }}
-        >
+        <div className="auth-error">
           {error}
-        </p>
+        </div>
       )}
 
-      <form
-        onSubmit={
-          handleSubmit
-        }
-      >
-        <div
-          style={{
-            marginBottom:
-              "15px",
-          }}
-        >
-          <label>
-            Name
-          </label>
+      <form onSubmit={handleSubmit}>
+
+        <div className="auth-group">
+          <label>Name</label>
 
           <input
             type="text"
             name="name"
-            value={
-              formData.name
-            }
-            onChange={
-              handleChange
-            }
+            value={formData.name}
+            onChange={handleChange}
             required
-            style={{
-              width: "100%",
-              padding: "10px",
-              marginTop:
-                "5px",
-            }}
           />
         </div>
 
-        <div
-          style={{
-            marginBottom:
-              "15px",
-          }}
-        >
-          <label>
-            Email
-          </label>
+        <div className="auth-group">
+          <label>Email</label>
 
           <input
             type="email"
             name="email"
-            value={
-              formData.email
-            }
-            onChange={
-              handleChange
-            }
+            value={formData.email}
+            onChange={handleChange}
             required
-            style={{
-              width: "100%",
-              padding: "10px",
-              marginTop:
-                "5px",
-            }}
           />
         </div>
 
-        <div
-          style={{
-            marginBottom:
-              "20px",
-          }}
-        >
-          <label>
-            Password
-          </label>
+        <div className="auth-group">
+          <label>Password</label>
 
           <input
             type="password"
             name="password"
-            value={
-              formData.password
-            }
-            onChange={
-              handleChange
-            }
+            value={formData.password}
+            onChange={handleChange}
             required
-            style={{
-              width: "100%",
-              padding: "10px",
-              marginTop:
-                "5px",
-            }}
           />
         </div>
 
         <button
           type="submit"
           disabled={loading}
-          style={{
-            width: "100%",
-            padding: "12px",
-            background:
-              "#1E3A8A",
-            color: "white",
-            border: "none",
-            borderRadius:
-              "8px",
-            cursor:
-              "pointer",
-          }}
+          className="auth-btn"
         >
           {loading
             ? "Creating Account..."
             : "Register"}
         </button>
+
       </form>
 
-      <p
-        style={{
-          marginTop: "20px",
-          textAlign: "center",
-        }}
-      >
-        Already have an
-        account?{" "}
+      <div className="auth-footer">
+        Already have an account?{" "}
         <Link to="/login">
           Login
         </Link>
-      </p>
+      </div>
+
     </div>
-  );
+  </div>
+);
 };
 
 export default Register;

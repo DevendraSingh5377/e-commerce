@@ -1,12 +1,14 @@
 const express = require("express");
 const router = express.Router();
 
+
 const {
   placeOrder,
   getMyOrders,
   getOrderById,
   getAllOrders,
   updateOrderStatus,
+   deleteOrder,
 } = require("../controllers/order.controller");
 
 const verifyJWT = require("../middleware/auth.middleware");
@@ -26,6 +28,10 @@ router.patch(
   updateOrderStatus
 );
 router.get("/:id", verifyJWT, getOrderById);
-
+router.delete(
+  "/:id",
+  verifyJWT,
+  deleteOrder
+);
 
 module.exports = router;

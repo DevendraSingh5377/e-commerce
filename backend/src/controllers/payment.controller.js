@@ -1,4 +1,4 @@
-
+const Cart = require("../models/Cart");
 const crypto = require("crypto");
 // POST /api/payment/create-order
 const razorpay =
@@ -145,6 +145,21 @@ const verifyPayment =
         razorpay_signature;
 
       await order.save();
+
+const cart = await Cart.findOne({
+  user: order.user,
+});
+
+if (cart) {
+  cart.items = [];
+  cart.totalPrice = 0;
+  cart.totalDiscount = 0;
+  cart.coupon = null;
+  cart.couponDiscount = 0;
+  cart.finalAmount = 0;
+
+  await cart.save();
+}
 
       res.status(200).json({
         success: true,

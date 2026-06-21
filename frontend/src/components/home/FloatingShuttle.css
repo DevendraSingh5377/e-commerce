@@ -1,59 +1,40 @@
 .floating-shuttle {
   position: absolute;
 
-  width: 90px;
+  top: 16%;
+  right: 12%;
 
-  top: 20%;
-  right: 8%;
+  width: 95px;
 
-  opacity: 0.18;
+  z-index: 5;
 
   pointer-events: none;
 
-  animation: shuttleFly 12s
-    ease-in-out infinite;
+  filter:
+    drop-shadow(
+      0 0 15px rgba(255,255,255,0.35)
+    )
+    drop-shadow(
+      0 0 30px rgba(56,189,248,0.25)
+    );
+
+  opacity: 0.95;
 }
 
-@keyframes shuttleFly {
-  0% {
-    transform: translate(0, 0)
-      rotate(0deg);
-  }
+@media (max-width: 900px) {
+ .floating-shuttle {
+  position: absolute;
 
-  25% {
-    transform: translate(
-        -50px,
-        -25px
-      )
-      rotate(-10deg);
-  }
+  width: 90px;
 
-  50% {
-    transform: translate(
-        -80px,
-        10px
-      )
-      rotate(-20deg);
-  }
+  top: 20%;
+  left: 65%;
 
-  75% {
-    transform: translate(
-        -40px,
-        30px
-      )
-      rotate(-8deg);
-  }
+  z-index: 5;
 
-  100% {
-    transform: translate(0, 0)
-      rotate(0deg);
-  }
+  filter:
+    drop-shadow(
+      0 0 20px rgba(255,255,255,0.4)
+    );
 }
-
-@media (max-width: 768px) {
-  .floating-shuttle {
-    width: 60px;
-    right: 2%;
-    opacity: 0.12;
-  }
 }

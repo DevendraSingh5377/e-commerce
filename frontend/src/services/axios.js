@@ -6,8 +6,7 @@ console.log(
 );
 
 const API = axios.create({
-  baseURL:
-    import.meta.env.VITE_API_URL,
+  baseURL: `${import.meta.env.VITE_API_URL}/api`, // Adds the missing /api prefix
 });
 
 // Automatically attach JWT token
